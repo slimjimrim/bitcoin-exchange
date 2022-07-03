@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Simple BTC Exchange
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project utilizes:
+- React
+- MongoDB
+- Node/Express
+- Plaid sandbox API
+- Bitcoin Core (regtest)
 
-## Available Scripts
+## Project setup
 
-In the project directory, you can run:
+Clone the repo and install
+```
+cd bitcoin-exchange
+npm install
+cd server
+npm install
+```
 
-### `npm start`
+Start up MongoDB - default port is (`localhost:27017`)
+  - follow [this](https://levelup.gitconnected.com/how-to-install-mongodb-database-on-local-environment-19a8a76f1b92) guide for setup help
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Start up Bitcoin Core in `-regtest` mode - default port is (`localhost:18443`)
+  - follow [this](https://gist.github.com/maxogden/1a172d659491f2b30fd4ffe67e94b964) for setup help
+  - NOTE: only perform steps 1, 2, and 3 to start bitcoin core in regtest mode.
+  - configure (or remove) username/password for your node in `server/constants.js`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Run tests
+```
+cd bitcoin-exchange/server
+npm run test
+```
 
-### `npm test`
+Configure Plaid API (if Plaid API test fails)
+- get client_id and secret [here](https://dashboard.plaid.com/team/keys)
+- copy/paste values for `PLAID_CLIENT_ID` and `PLAID_SECRET` in `server/constants.js`
+- configure redirect URI [here](https://dashboard.plaid.com/team/api) - add `http://localhost:3006`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Start the server - `localhost:3030`
+```
+cd bitcoin-exchange/server
+npm run start
+```
 
-### `npm run build`
+Start the React app - `localhost:3006`
+```
+cd bitcoin-exchange
+npm run start
+visit localhost:3006 in the browser
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## NOTES
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Areas of improvement
+- All sensitive info like API keys should be environment variables
+- Various front-end features:
+  - persist user session to prevent logging in on every browser refresh
+  - better styling
+- Better implementation of BTC transaction fees
+- More extensive unit/integration tests
+- Containerize the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### What I learned
+- Better understanding of BTC's wallets and UTXO model
+- React hooks are awesome. They greatly simplify react code :)

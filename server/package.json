@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "2.4.3",
+    "bitcoin-simple-rpc": "^0.0.4",
+    "bitcoinjs-lib": "^6.0.1",
+    "body-parser": "^1.20.0",
+    "chai": "^4.3.6",
+    "concurrently": "^7.2.1",
+    "cors": "2.8.5",
+    "ecpair": "^2.0.1",
+    "express": "4.17.1",
+    "mocha": "^10.0.0",
+    "mongoose": "5.11.18",
+    "nodemon": "2.0.7",
+    "plaid": "^10.4.0",
+    "regtest-client": "^0.2.0",
+    "tiny-secp256k1": "^2.2.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha 'tests/**/*.js' --recursive --exit"
+  }
+}
