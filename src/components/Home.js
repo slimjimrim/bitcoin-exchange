@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-// import ReactHookSelect from 'react-hook-select'
+import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -11,10 +12,13 @@ import {
 } from "../utils/constants";
 import { formatter } from "../utils/utils";
 import Accounts from "./Accounts";
+import Chart from "./Chart";
 import Link from "./Link";
 
+const queryClient = new QueryClient();
+
 const Home = (props) => {
-  console.log(props.user);
+  console.log("USER: " + props.user);
   const { register, handleSubmit, errors } = useForm();
   const [userDetails, setUserDetails] = useState(props.user);
   const [linkToken, setLinkToken] = useState(null);
@@ -48,7 +52,7 @@ const Home = (props) => {
       const accounts = await axios.post(`${BASE_API_URL}/api/get_accounts`, {
         user_id: userDetails._id
       });
-      console.log(accounts.data);
+
       setAccounts(accounts.data);
     } catch (err) {
       if (err.response) {
@@ -117,22 +121,32 @@ const Home = (props) => {
       <h1>BEST BITCOIN EXCHANGE</h1>
       <br />
       <div className="mx-auto container mbott-6">
-        <h3>User info:</h3>
-        <p className="text-black">First name: {userDetails.first_name}</p>
-        <p className="text-black">Last name: {userDetails.last_name}</p>
-        <p className="text-black">Email: {userDetails.email}</p>
-        <br />
-        { linkToken != null ? (<Link linkToken={linkToken} user={userDetails} getAccountDetails={getAccountDetails} />) : (<div></div>) }
-        <Accounts accounts={accounts} />
-        <br />
-        <div>
-          <h3>BTC Balance: </h3>
-          <p className="text-black">{ (btcBalance && btcPrice) ? `${btcBalance.btc_balance} - (${formatter.format(btcBalance.btc_balance * btcPrice.usd)})` : "Loading" }</p>
-          <br />
-          <h3>BTC Price: </h3>
-          <p className="text-black">{ btcPrice ? formatter.format(btcPrice.usd) : "Loading" }</p>
-          <br />
+        <div className="upper flex w-full">
+          <div className="basic-info">
+            <h3>User info:</h3>
+            <p className="text-black">First name: {userDetails.first_name}</p>
+            <p className="text-black">Last name: {userDetails.last_name}</p>
+            <p className="text-black">Email: {userDetails.email}</p>
+            <br />
+            { linkToken != null ? (<Link linkToken={linkToken} user={userDetails} getAccountDetails={getAccountDetails} />) : (<div></div>) }
+            <Accounts accounts={accounts} />
+            <br />
+            <h3>BTC Balance: </h3>
+            <p className="text-black">{ (btcBalance && btcPrice) ? `${btcBalance.btc_balance} - (${formatter.format(btcBalance.btc_balance * btcPrice.usd)})` : "Loading" }</p>
+            <br />
+            <h3>BTC Price: </h3>
+            <p className="text-black">{ btcPrice ? formatter.format(btcPrice.usd) : "Loading" }</p>
+            <br />
+          </div>
+          <div className="chart text-right w-full items-center">
+            <QueryClientProvider client={queryClient}>
+              <Chart />
+              <ReactQueryDevtools />
+            </QueryClientProvider>
+          </div>
+        </div>
 
+        <div>
           <Form className="" onSubmit={handleSubmit(buyBtc)}>
 
             <Form.Group controlId="btc_amount">

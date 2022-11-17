@@ -13,7 +13,7 @@ const Home = (props) => {
         public_token: publicToken,
         user_id: props.user._id
       });
-      console.log(resp.data);
+
       await props.getAccountDetails();
     } catch (err) {
       console.log("Error:", err);

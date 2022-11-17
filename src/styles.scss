@@ -2085,3 +2085,165 @@ button,
             padding-right: 1.25rem;
       }
 }
+
+// chart stuff =================================================================
+:root {
+  --blue: #1855ff;
+  --white: #fff;
+  --green: #41e041;
+  --red: #ff5b5b;
+  --border-radius: 8px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hitzone {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
+.card {
+  text-align: center;
+  color: var(--white);
+  margin: auto;
+  max-width: 300px;
+  background: linear-gradient(135deg, #2bb1ff 0%, var(--blue) 100%);
+  border-radius: var(--border-radius);
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+}
+
+.card:not(.expanded):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.50);
+}
+
+.card-inner {
+  position: relative;
+}
+
+.top-data {
+  padding: 40px 25px 0;
+}
+
+.card img {
+  width: 75px;
+  height: 75px;
+  background: var(--white);
+  padding: 2px;
+  border-radius: 50px;
+}
+
+.crypto-name {
+  font-size: 26px;
+  font-weight: 300;
+  margin: 12px 0;
+}
+
+.crypto-price {
+  font-size: 20px;
+  margin: 12px 0 0;
+  font-weight: 300;
+}
+
+.crypto-price span {
+  font-size: 12px;
+  font-weight: 700;
+  position: relative;
+  top: -6px;
+  left: 6px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.crypto-price svg {
+  margin-right: 4px;
+}
+
+.positive {
+  background: var(--green);
+}
+
+.negative {
+  background: var(--red);
+}
+
+.expanded.card {
+  max-width: 800px;
+}
+
+.expanded .top-data {
+  padding: 40px 25px 20px;
+}
+
+.close {
+  position: absolute;
+  color: var(--white);
+  right: 10px;
+  top: 10px;
+  padding: 5px;
+  z-index: 1;
+}
+
+.chart {
+  position: relative;
+}
+
+.chart svg {
+  vertical-align: middle;
+}
+
+.chart-actions {
+  display: none;
+}
+
+/* Only display the actions when expanded */
+.expanded .chart-actions {
+  display: block;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.chart-actions button {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0 10px;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  outline: none;
+}
+
+.chart-actions button:hover,
+.chart-actions button:focus {
+  border: 1px solid var(--white);
+}
+
+.chart-actions .active {
+  background: var(--white);
+  color: var(--blue);
+}
+
+.loading-container {
+  height: 0;
+  padding-bottom: 50%;
+  width: 100%;
+}
+
+.loading-container span {
+  position: absolute;
+  left: 50%;
+  margin-left: -35px;
+  top: 30%;
+}

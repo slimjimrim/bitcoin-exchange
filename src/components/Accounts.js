@@ -12,7 +12,7 @@ const Account = (props) => {
 
 const Accounts = (props) => {
 
-  console.log(props.accounts);
+  console.log("ACCOUNTS: " + props.accounts);
   function accounts() {
     return props.accounts.map(account => {
       return (
