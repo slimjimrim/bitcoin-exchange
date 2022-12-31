@@ -31,7 +31,7 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Form className="input-form" onSubmit={handleSubmit(loginUser)}>
         <div className="col-md-6 offset-md-3">
           {errorMessage ? (

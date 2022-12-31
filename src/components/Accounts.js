@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { formatter } from "../utils/utils";
+import { formatPrice } from "../utils/utils";
 
 const Account = (props) => {
   return (
-    <div className="my-2">
-      <p className="text-black">Name: { props.account.name }</p>
-      <p className="text-black">Balance: { formatter.format(props.account.balances.available) }</p>
+    <div className="">
+      <p className="">Name: { props.account.name }</p>
+      <p className="">Balance: { formatPrice(props.account.balances.available) }</p>
     </div>
   );
 }

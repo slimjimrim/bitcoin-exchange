@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "react-query"
+import { useQuery } from "react-query"
 
 import {
   VictoryLine,

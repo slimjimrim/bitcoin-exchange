@@ -5,6 +5,8 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
+import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import FirstStep from "../components/FirstStep";
 import Header from "../components/Header";
@@ -12,6 +14,8 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import SecondStep from "../components/SecondStep";
 import Charts from "../components/Charts/Charts";
+
+const queryClient = new QueryClient();
 
 const AppRouter = () => {
   const [user, setUser] = useState({});
@@ -31,9 +35,10 @@ const AppRouter = () => {
 
   return (
     <BrowserRouter>
-      <div className="container">
+      <div className="">
         <br />
         <Header />
+        <br />
         <Switch>
           <Route render={(props) => <Login { ...props } updateUser={ updateUser } />}
                  path="/"
@@ -46,7 +51,7 @@ const AppRouter = () => {
                  path="/second"
           />
           <Route render={(props) => <Home { ...props } user={ user } updateUser={ updateUser } />} path="/home" />
-          <Route render={(props) => <Charts { ...props } user={ user } />} path="/charts" />
+          <Route render={(props) => <QueryClientProvider client={queryClient}><Charts { ...props } user={ user } /><ReactQueryDevtools /></QueryClientProvider>} path="/charts" />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
         <br />
