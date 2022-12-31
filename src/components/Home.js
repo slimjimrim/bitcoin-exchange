@@ -118,9 +118,8 @@ const Home = (props) => {
 
   return (
     <div>
-      <h1>BEST BITCOIN EXCHANGE</h1>
       <br />
-      <div className="mx-auto container mbott-6">
+      <div className="container">
         <div className="upper flex w-full">
           <div className="basic-info">
             <h3>User info:</h3>

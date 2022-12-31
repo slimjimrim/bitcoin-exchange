@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 import Progress from "./Progress";
+import NavBar from "./Nav/NavBar";
 
 const Header = ({ location }) => {
   const isLoginPage = location.pathname === "/";
@@ -17,6 +18,8 @@ const Header = ({ location }) => {
     ) :
     (
       <div>
+        <h1>BEST BITCOIN EXCHANGE</h1>
+        <NavBar />
       </div>
     )
   );

@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import SecondStep from "../components/SecondStep";
+import Charts from "../components/Charts/Charts";
 
 const AppRouter = () => {
   const [user, setUser] = useState({});
@@ -45,8 +46,10 @@ const AppRouter = () => {
                  path="/second"
           />
           <Route render={(props) => <Home { ...props } user={ user } updateUser={ updateUser } />} path="/home" />
+          <Route render={(props) => <Charts { ...props } user={ user } />} path="/charts" />
           <Route render={() => <Redirect to="/" />} />
         </Switch>
+        <br />
       </div>
     </BrowserRouter>
   );
