@@ -55,6 +55,8 @@ const AppRouter = () => {
           <Route render={() => <Redirect to="/" />} />
         </Switch>
         <br />
+        <br />
+        <br />
       </div>
     </BrowserRouter>
   );

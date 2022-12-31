@@ -1,4 +1,4 @@
-$base-color: #e67e22;
+$base-color: black;
 $blue-color: #22ac11;
 
 * {
@@ -8,7 +8,6 @@ $blue-color: #22ac11;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: $base-color;
 }
 
@@ -242,11 +241,11 @@ button {
 }
 
 .positive {
-  background: var(--green);
+  color: var(--green);
 }
 
 .negative {
-  background: var(--red);
+  color: var(--red);
 }
 
 .expanded.card {
