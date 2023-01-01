@@ -5,7 +5,7 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import { useQuery, QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import FirstStep from "../components/FirstStep";

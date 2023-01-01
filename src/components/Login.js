@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import Button from '@mui/material/Button';
 import axios from "axios";
 
 import { BASE_API_URL } from "../utils/constants";
@@ -90,7 +91,7 @@ const Login = (props) => {
             )}
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="contained" type="submit">
             Check Login
           </Button>
         </div>

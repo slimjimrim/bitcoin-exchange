@@ -24,7 +24,7 @@ const Home = (props) => {
   // using the pre-built component PlaidLink
   const btnStyle = {
     "color": "#fff",
-    "backgroundColor": "#007bff",
+    "backgroundColor": "#1976d2",
     "borderColor": "#007bff",
     "padding": "0.375rem 0.75rem",
     "fontSize": "1rem",
@@ -34,6 +34,12 @@ const Home = (props) => {
     "verticalAlign": "middle",
     "display": "inline-block",
     "fontWeight": "400",
+    "fontFamily":"Roboto",
+    "textTransform": "uppercase",
+    "fontWeight": "500",
+    "fontSize": "0.875rem",
+    "lineHeight": "1.75",
+    "letterSpacing": "0.02857em",
   };
 
   return (

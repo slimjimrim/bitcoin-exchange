@@ -1,9 +1,5 @@
-import React, {
-  useEffect,
-  useState
-} from "react";
-import { useQuery, QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import React from "react";
+import { useQuery } from "react-query";
 
 import ChartTable from "./ChartTable";
 import "./charts.scss";
@@ -14,8 +10,6 @@ const ASSETS = [
   "bitcoin",
   "ethereum"
 ];
-
-const queryClient = new QueryClient();
 
 // TODO: move these to their own file
 // custom hooks ================================================================

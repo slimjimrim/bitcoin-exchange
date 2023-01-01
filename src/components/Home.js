@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import Button from '@mui/material/Button';
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -187,7 +188,7 @@ const Home = (props) => {
 
           <p className="my-2">TOTAL COST: { (amount && btcPrice) ? formatPrice(amount.value * btcPrice.usd) : "Loading..." }</p>
 
-          <Button variant="primary" type="submit" disabled={accounts.length === 0}>
+          <Button variant="contained" type="submit" disabled={accounts.length === 0}>
             Buy Bitcoin
           </Button>
           <p className="my-2">{ isBuyProcessing ? "Processing..." : "" }</p>

@@ -2,6 +2,14 @@ import React from "react";
 
 import ChartRow from "./ChartRow";
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 const ChartTable = (props) => {
   console.log("assets:");
   console.log(props.assets);
@@ -14,20 +22,27 @@ const ChartTable = (props) => {
   }
 
   return (
-    <table>
-      <tr>
-        <th>Rank</th>
-        <th>name</th>
-        <th>symbol</th>
-        <th>price</th>
-        <th>24hr %</th>
-        <th>7d %</th>
-        <th>30d %</th>
-        <th>200d %</th>
-        <th>1yr %</th>
-      </tr>
-      {props.assets ? displayRows() : ""}
-    </table>
+    <TableContainer component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Rank</TableCell>
+            <TableCell align="left">Name</TableCell>
+            <TableCell align="right">Symbol</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">24hr %</TableCell>
+            <TableCell align="right">7d %</TableCell>
+            <TableCell align="right">30d %</TableCell>
+            <TableCell align="right">200d %</TableCell>
+            <TableCell align="right">1yr %</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.assets ? displayRows() : ""}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
