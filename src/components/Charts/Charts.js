@@ -1,40 +1,13 @@
 import React from "react";
 import { useQuery } from "react-query";
 
+import { useGetData, useGetBasicInfo } from "../../hooks/Hooks";
 import ChartTable from "./ChartTable";
 import "./charts.scss";
-
-const API_OPTIONS_A = { refetchInterval: 60000, staleTime: 60000};
-const API_URL = "https://api.coingecko.com/api/v3/coins/";
-const ASSETS = [
-  "bitcoin",
-  "ethereum",
-  "solana",
-  "tether",
-  "binancecoin",
-  "ripple",
-  "cardano",
-  "dogecoin"
-];
-
-// TODO: move these to their own file
-// custom hooks ================================================================
-function useGetBasicInfo(asset, options) {
-  return useQuery(`${asset}-basic-info`, async () => {
-    const response = await fetch(`${API_URL + asset}`);
-    return await response.json();
-  }, options);
-}
-
-function  useGetData(assets, options) {
-  return useQuery("main-chart-data", async () => {
-    const promises = assets.map(async a => {
-      const resp = await fetch(`${API_URL + a}`);
-      return resp.json();
-    });
-    return await Promise.all(promises);
-  }, options);
-}
+import {
+  ASSETS,
+  API_OPTIONS_A
+} from "../../utils/constants";
 
 const Charts = (props) => {
 

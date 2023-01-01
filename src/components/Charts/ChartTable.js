@@ -11,8 +11,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const ChartTable = (props) => {
-  console.log("assets:");
-  console.log(props.assets);
 
   // display methods ===========================================================
   function displayRows() {

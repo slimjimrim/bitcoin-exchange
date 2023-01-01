@@ -126,11 +126,12 @@ const Home = (props) => {
 
   return (
     <div className="container">
+      <h2>Dashboard</h2>
 
       <Grid container spacing={2}>
         {/* BTC balance */}
         <Grid item xs={6}>
-          <Card sx={{ minWidth: 275 }}>
+          <Card>
             <CardContent>
               <Typography variant="h5" component="div">
                 BTC Balance
@@ -144,7 +145,7 @@ const Home = (props) => {
         </Grid>
         {/* BTC price */}
         <Grid item xs={6}>
-          <Card sx={{ minWidth: 275 }}>
+          <Card>
             <CardContent>
               <Typography variant="h5" component="div">
                 BTC Price
@@ -158,7 +159,7 @@ const Home = (props) => {
         </Grid>
         {/* user info */}
         <Grid item xs={12}>
-          <Card sx={{ minWidth: 275 }}>
+          <Card>
             <CardContent>
               <Typography variant="h5" component="div">
                 User Info:
@@ -176,7 +177,7 @@ const Home = (props) => {
         <Accounts accounts={accounts} />
         {/* buy mooar */}
         <Grid item xs={12}>
-          <Card sx={{ minWidth: 275 }}>
+          <Card>
             <CardContent>
               <Typography variant="h5" component="div">
                 Buy:
@@ -238,14 +239,14 @@ const Home = (props) => {
         </Grid>
       </Grid>
 
-      <div className="">
+      {/* <div className="">
         <div className="chart">
           <QueryClientProvider client={queryClient}>
             <Chart />
             <ReactQueryDevtools />
           </QueryClientProvider>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
