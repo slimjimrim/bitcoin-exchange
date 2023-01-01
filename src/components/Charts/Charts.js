@@ -8,7 +8,13 @@ const API_OPTIONS_A = { refetchInterval: 60000, staleTime: 60000};
 const API_URL = "https://api.coingecko.com/api/v3/coins/";
 const ASSETS = [
   "bitcoin",
-  "ethereum"
+  "ethereum",
+  "solana",
+  "tether",
+  "binancecoin",
+  "ripple",
+  "cardano",
+  "dogecoin"
 ];
 
 // TODO: move these to their own file

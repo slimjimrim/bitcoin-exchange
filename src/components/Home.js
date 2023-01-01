@@ -165,9 +165,9 @@ const Home = (props) => {
               </Typography>
               <br />
               <Typography variant="body2">
-                <p className="">First name: {userDetails.first_name}</p>
-                <p className="">Last name: {userDetails.last_name}</p>
-                <p className="">Email: {userDetails.email}</p>
+                <span className="">First name: {userDetails.first_name}</span>
+                <span className="">Last name: {userDetails.last_name}</span>
+                <span className="">Email: {userDetails.email}</span>
               </Typography>
             </CardContent>
           </Card>

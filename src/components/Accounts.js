@@ -9,10 +9,10 @@ import { formatPrice } from "../utils/utils";
 
 const Account = (props) => {
   return (
-    <div className="">
-      <p className="">Name: { props.account.name }</p>
-      <p className="">Balance: { formatPrice(props.account.balances.available) }</p>
-    </div>
+    <span className="">
+      <span className="">Name: { props.account.name }</span>
+      <span className="">Balance: { formatPrice(props.account.balances.available) }</span>
+    </span>
   );
 }
 
