@@ -3,9 +3,16 @@ import { useForm } from "react-hook-form";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Form } from "react-bootstrap";
-import Button from '@mui/material/Button';
 import axios from "axios";
 import Swal from "sweetalert2";
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 
 import {
   BASE_API_URL,
@@ -119,83 +126,125 @@ const Home = (props) => {
 
   return (
     <div className="container">
+
+      <Grid container spacing={2}>
+        {/* BTC balance */}
+        <Grid item xs={6}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                BTC Balance
+              </Typography>
+              <br />
+              <Typography variant="body2">
+                { (btcBalance && btcPrice) ? `${btcBalance.btc_balance} - (${formatPrice(btcBalance.btc_balance * btcPrice.usd)})` : "Loading" }
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        {/* BTC price */}
+        <Grid item xs={6}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                BTC Price
+              </Typography>
+              <br />
+              <Typography variant="body2">
+                { btcPrice ? formatPrice(btcPrice.usd) : "Loading" }
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        {/* user info */}
+        <Grid item xs={12}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                User Info:
+              </Typography>
+              <br />
+              <Typography variant="body2">
+                <p className="">First name: {userDetails.first_name}</p>
+                <p className="">Last name: {userDetails.last_name}</p>
+                <p className="">Email: {userDetails.email}</p>
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        {/* account info */}
+        <Accounts accounts={accounts} />
+        {/* buy mooar */}
+        <Grid item xs={12}>
+          <Card sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography variant="h5" component="div">
+                Buy:
+              </Typography>
+              <br />
+              <Form className="" onSubmit={handleSubmit(buyBtc)}>
+
+                <Form.Group controlId="btc_amount">
+                  <Form.Label>Amount</Form.Label>
+                  <Form.Control
+                    type="number"
+                    name="btc_amount"
+                    step="0.0001"
+                    value={ amount.value }
+                    onChange={e => setAmount({ value: e.target.value })}
+                    placeholder="Enter the amount of BTC"
+                    ref={register({
+                      required: "An amount is required.",
+                      min: 0.0001
+                    })}
+                    className={`${errors.btc_amount ? "input-error" : ""}`}
+                  />
+                  { errors.btc_amount && (
+                    <p className="errorMsg">{ errors.btc_amount.message }</p>
+                  )}
+                </Form.Group>
+
+                <Form.Group controlId="selected_account">
+                  <Form.Label>Funding</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="selected_account"
+                    ref={register({
+                      required: "An account is required"
+                    })}
+                    onChange={e => {
+                      console.log("e.target.value", e.target.value);
+                      setSelectedAccount(e.target.value);
+                    }}
+                  >
+                    { accounts.length > 0 ? accounts.map(account => {
+                      return <option key={account.account_id} value={account.account_id}>{`${account.name} - ${formatPrice(account.balances.available)}`}</option>
+                    }) : <option>Connect an account to make a purchase</option> }
+                  </Form.Control>
+                </Form.Group>
+
+                <p className="my-2">TOTAL COST: { (amount && btcPrice) ? formatPrice(amount.value * btcPrice.usd) : "Loading..." }</p>
+
+                <Button variant="contained" type="submit" disabled={accounts.length === 0}>
+                  Buy Bitcoin
+                </Button>
+                <p className="my-2">{ isBuyProcessing ? "Processing..." : "" }</p>
+                { accounts.length === 0 && (
+                  <p className="errorMsg">Connect your bank account above if you would like to purchase BTC.</p>
+                )}
+              </Form>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
       <div className="">
-        <div className="basic-info">
-          <h3>User info:</h3>
-          <p className="">First name: {userDetails.first_name}</p>
-          <p className="">Last name: {userDetails.last_name}</p>
-          <p className="">Email: {userDetails.email}</p>
-          <br />
-          { linkToken != null ? (<Link linkToken={linkToken} user={userDetails} getAccountDetails={getAccountDetails} />) : (<div></div>) }
-          <Accounts accounts={accounts} />
-          <br />
-          <h3>BTC Balance: </h3>
-          <p className="">{ (btcBalance && btcPrice) ? `${btcBalance.btc_balance} - (${formatPrice(btcBalance.btc_balance * btcPrice.usd)})` : "Loading" }</p>
-          <br />
-          <h3>BTC Price: </h3>
-          <p className="">{ btcPrice ? formatPrice(btcPrice.usd) : "Loading" }</p>
-          <br />
-        </div>
         <div className="chart">
           <QueryClientProvider client={queryClient}>
             <Chart />
             <ReactQueryDevtools />
           </QueryClientProvider>
         </div>
-      </div>
-
-      <div>
-        <Form className="" onSubmit={handleSubmit(buyBtc)}>
-
-          <Form.Group controlId="btc_amount">
-            <Form.Label>Amount</Form.Label>
-            <Form.Control
-              type="number"
-              name="btc_amount"
-              step="0.0001"
-              value={ amount.value }
-              onChange={e => setAmount({ value: e.target.value })}
-              placeholder="Enter the amount of BTC"
-              ref={register({
-                required: "An amount is required.",
-                min: 0.0001
-              })}
-              className={`${errors.btc_amount ? "input-error" : ""}`}
-            />
-            { errors.btc_amount && (
-              <p className="errorMsg">{ errors.btc_amount.message }</p>
-            )}
-          </Form.Group>
-
-          <Form.Group controlId="selected_account">
-            <Form.Label>Funding</Form.Label>
-            <Form.Control
-              as="select"
-              name="selected_account"
-              ref={register({
-                required: "An account is required"
-              })}
-              onChange={e => {
-                console.log("e.target.value", e.target.value);
-                setSelectedAccount(e.target.value);
-              }}
-            >
-              { accounts.length > 0 ? accounts.map(account => {
-                return <option key={account.account_id} value={account.account_id}>{`${account.name} - ${formatPrice(account.balances.available)}`}</option>
-              }) : <option>Connect an account to make a purchase</option> }
-            </Form.Control>
-          </Form.Group>
-
-          <p className="my-2">TOTAL COST: { (amount && btcPrice) ? formatPrice(amount.value * btcPrice.usd) : "Loading..." }</p>
-
-          <Button variant="contained" type="submit" disabled={accounts.length === 0}>
-            Buy Bitcoin
-          </Button>
-          <p className="my-2">{ isBuyProcessing ? "Processing..." : "" }</p>
-          { accounts.length === 0 && (
-            <p className="errorMsg">Connect your bank account above if you would like to purchase BTC.</p>
-          )}
-        </Form>
       </div>
     </div>
   );
