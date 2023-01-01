@@ -1294,14 +1294,14 @@
   "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.11.2.tgz"
   "version" "5.11.2"
 
-"@mui/icons-material@^5.11.0":
+"@mui/icons-material@^5.11.0", "@mui/icons-material@>= 5.3.0":
   "integrity" "sha512-I2LaOKqO8a0xcLGtIozC9xoXjZAto5G5gh0FYUMAlbsIHNHIjn4Xrw9rvjY20vZonyiGrZNMAlAXYkY6JvhF6A=="
   "resolved" "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.11.0.tgz"
   "version" "5.11.0"
   dependencies:
     "@babel/runtime" "^7.20.6"
 
-"@mui/material@^5.0.0", "@mui/material@^5.11.2":
+"@mui/material@^5.0.0", "@mui/material@^5.11.2", "@mui/material@>= 5.3.0":
   "integrity" "sha512-PeraRDsghnDLzejorfe9ps1syxlB8UrGs+UKwg9GGlndv5Tghm+9nwuibrP2TCDC14mlryF+u2WlAOYaPPMwGA=="
   "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.11.2.tgz"
   "version" "5.11.2"
@@ -5453,6 +5453,11 @@
     "@babel/runtime" "^7.12.5"
     "remove-accents" "0.4.2"
 
+"material-ui-bootstrap@^5.2.3":
+  "integrity" "sha512-4TawFR0ERy/eGUD5fc78s6ZH53lochYWqNZ2KERv6U57lfPhzmFHwYAgpHGe/7C+WUHrw6SxPqYM58srSlufqg=="
+  "resolved" "https://registry.npmjs.org/material-ui-bootstrap/-/material-ui-bootstrap-5.2.3.tgz"
+  "version" "5.2.3"
+
 "mdn-data@2.0.14":
   "version" "2.0.14"
 
@@ -6814,7 +6819,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.6 || ^17.0.0", "react@^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@18.2.0":
+"react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.6 || ^17.0.0", "react@^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16.3.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=17", "react@18.2.0":
   "version" "18.2.0"
   dependencies:
     "loose-envify" "^1.1.0"

@@ -35,7 +35,7 @@ const ChartTable = (props) => {
             <TableCell align="right">7d %</TableCell>
             <TableCell align="right">30d %</TableCell>
             <TableCell align="right">200d %</TableCell>
-            <TableCell align="right">1yr %</TableCell>
+            <TableCell align="center">1yr %</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -18,6 +18,7 @@ import Typography from '@mui/material/Typography';
 
 const ChartRow = (props) => {
   const asset = props.asset;
+  let { image, name } = asset;
   const marketData = asset["market_data"];
   const [open, setOpen] = React.useState(false);
 
@@ -36,17 +37,20 @@ const ChartRow = (props) => {
         <TableCell component="th" scope="row" align="justify">
           {asset?.market_cap_rank}
         </TableCell>
-        <TableCell align="left">{asset?.name}</TableCell>
+        <TableCell align="left">
+          <img src={image?.small} alt={`${name} logo`} />
+          {asset?.name}
+        </TableCell>
         <TableCell align="right" className="asset-symbol">{asset?.symbol}</TableCell>
         <TableCell align="right">{formatPrice(marketData?.current_price?.usd)}</TableCell>
         <TableCell align="right">{formatPlusMinus(marketData?.price_change_percentage_24h)}</TableCell>
         <TableCell align="right">{formatPlusMinus(marketData?.price_change_percentage_7d)}</TableCell>
         <TableCell align="right">{formatPlusMinus(marketData?.price_change_percentage_30d)}</TableCell>
         <TableCell align="right">{formatPlusMinus(marketData?.price_change_percentage_200d)}</TableCell>
-        <TableCell align="right">{formatPlusMinus(marketData?.price_change_percentage_1y)}</TableCell>
+        <TableCell align="center">{formatPlusMinus(marketData?.price_change_percentage_1y)}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">

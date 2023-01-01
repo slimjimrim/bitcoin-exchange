@@ -17,6 +17,7 @@
     "country-state-city": "2.0.0",
     "date-fns": "^2.29.3",
     "framer-motion": "3.7.0",
+    "material-ui-bootstrap": "^5.2.3",
     "node-sass": "^7.0.1",
     "react": "18.2.0",
     "react-bootstrap": "1.5.0",
