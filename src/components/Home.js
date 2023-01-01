@@ -21,7 +21,6 @@ import {
 import { formatPrice } from "../utils/utils";
 import Accounts from "./Accounts";
 import Chart from "./Chart";
-import Link from "./Link";
 
 const queryClient = new QueryClient();
 
@@ -29,8 +28,7 @@ const Home = (props) => {
   console.log("USER: " + props.user);
   const { register, handleSubmit, errors } = useForm();
   const [userDetails, setUserDetails] = useState(props.user);
-  const [linkToken, setLinkToken] = useState(null);
-  const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState([]); // account stuff should be in a custom hook so components can share!
   const [selectedAccount, setSelectedAccount] = useState();
   const [amount, setAmount] = useState({value: 0});
   const [btcPrice, setBtcPrice] = useState(null);
@@ -40,19 +38,6 @@ const Home = (props) => {
   // Redirect to login if there's no user
   if (!(Object.keys(props.user).length > 0)) {
     props.history.push("/");
-  }
-
-  async function generateLinkToken() {
-    try {
-      const linkToken = await axios.post(`${BASE_API_URL}/api/create_link_token`, {
-        user_id: userDetails._id
-      });
-      setLinkToken(linkToken.data.link_token);
-    } catch (err) {
-      if (err.response) {
-        console.log("Error:", err.response.data);
-      }
-    }
   }
 
   async function getAccountDetails() {
@@ -117,7 +102,6 @@ const Home = (props) => {
 
   useEffect(() => {
     if (userDetails._id) {
-      generateLinkToken();
       getAccountDetails();
       getBalance();
     }
@@ -165,7 +149,7 @@ const Home = (props) => {
                 User Info:
               </Typography>
               <br />
-              <Typography variant="body2">
+              <Typography variant="body2" className="user-info">
                 <span className="">First name: {userDetails.first_name}</span>
                 <span className="">Last name: {userDetails.last_name}</span>
                 <span className="">Email: {userDetails.email}</span>
@@ -174,7 +158,7 @@ const Home = (props) => {
           </Card>
         </Grid>
         {/* account info */}
-        <Accounts accounts={accounts} />
+        <Accounts accounts={accounts} userDetails={userDetails} getAccountDetails={getAccountDetails} />
         {/* buy mooar */}
         <Grid item xs={12}>
           <Card>
