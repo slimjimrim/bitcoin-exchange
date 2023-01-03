@@ -16,7 +16,7 @@ export const API_OPTIONS_B = {
   })),
 };
 
-export const API_URL = "https://api.coingecko.com/api/v3/coins/";
+export const COINGECKO_API_URL = "https://api.coingecko.com/api/v3/coins/";
 
 export const ASSETS = [
   "bitcoin",

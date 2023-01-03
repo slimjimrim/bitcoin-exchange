@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 
-import { useGetData, useGetBasicInfo } from "../../hooks/Hooks";
+import { useGetBasicInfo } from "../../hooks/Hooks";
 import ChartTable from "./ChartTable";
 import "./charts.scss";
 import {
@@ -15,7 +15,7 @@ const Charts = (props) => {
     props.history.push("/");
   }
 
-  const {data, isLoading} = useGetData(ASSETS, API_OPTIONS_A);
+  const {data, isLoading} = useGetBasicInfo(ASSETS, API_OPTIONS_A);
 
   return (
     <div className="container">

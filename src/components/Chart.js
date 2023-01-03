@@ -66,6 +66,7 @@ const Chart = (props) => {
 
   const {data, isLoading} = useGetBasicInfo(SYMBOL, API_OPTIONS_A);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(SYMBOL, selectedInterval, API_OPTIONS_B)
+  console.log(timeseries);
 
   // console.log(timeseries, isTimeseriesLoading);
   // useEffect(() => {}, []);

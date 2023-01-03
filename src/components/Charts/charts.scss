@@ -11,3 +11,17 @@ img {
 .asset-symbol {
   text-transform: uppercase;
 }
+
+.intervals {
+  display: flex;
+  justify-content: center;
+
+  .interval {
+    margin: 0 1em;
+    cursor: pointer;
+  }
+
+  .selected-interval {
+    text-decoration: underline;
+  }
+}

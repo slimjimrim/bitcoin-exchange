@@ -13,6 +13,7 @@ import { BASE_API_URL } from "../utils/constants";
 const Account = (props) => {
   return (
     <span className="account-info">
+      <br />
       <span className="">Name: { props.account.name }</span>
       <span className="">Balance: { formatPrice(props.account.balances.available) }</span>
     </span>
@@ -44,10 +45,7 @@ const Accounts = (props) => {
   function displayAccounts() {
     return props.accounts.map(account => {
       return (
-        <div>
-          <br />
-          <Account key={ account.account_id } account={account} />
-        </div>
+        <Account key={ account.account_id } account={account} />
       );
     });
   }

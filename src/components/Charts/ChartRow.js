@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   formatPrice,
   formatPlusMinus
 } from "../../utils/utils";
+import {
+  useGetTimeseries
+} from "../../hooks/Hooks";
+
+import format from 'date-fns/format';
 
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -16,11 +21,97 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
+import {
+  VictoryLine,
+  VictoryChart,
+  VictoryAxis,
+  VictoryTooltip,
+  VictoryVoronoiContainer,
+} from 'victory';
+
+import {
+  API_OPTIONS_B,
+  INTERVALS
+} from "../../utils/constants";
+
 const ChartRow = (props) => {
   const asset = props.asset;
   let { image, name } = asset;
   const marketData = asset["market_data"];
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
+  console.log(selectedInterval);
+  const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
+
+  function displayIntervals() {
+    return (
+      <div className="intervals">
+        {INTERVALS.map(i => {
+          return (
+            <div key={i.value} className={selectedInterval == i.value ? "selected-interval interval" : "interval"} onClick={() => setSelectedInterval(i.value)} >{i.label}</div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  function displayDropdownChart() {
+    return (
+      <VictoryChart
+        width={800}
+        height={400}
+        containerComponent={
+          <VictoryVoronoiContainer
+            labels={({ datum }) => formatPrice(datum.y)}
+            title={`${asset.name} price data chart`}
+            labelComponent={
+              <VictoryTooltip
+                style={{
+                  fill: '#333',
+                  fontSize: 16,
+                }}
+                flyoutStyle={{
+                  fill: "#fff",
+                  stroke: '#fff',
+                  strokeWidth: 1,
+                  margin: 10,
+                }}
+              />
+            }
+          />
+        }
+      >
+        <VictoryLine
+          style={{
+            data: {
+              stroke: "#fff",
+              strokeWidth: 2,
+            },
+          }}
+          data={timeseries}
+        />
+        <VictoryAxis
+          orientation="bottom"
+          style={{
+            axis: {
+              stroke: '#fff',
+              strokeWidth: 2,
+            },
+            tickLabels: {
+              fill: '#fff',
+            },
+          }}
+          tickFormat={(x) => {
+            if (selectedInterval  === 1) {
+              return format(x, 'p');
+            }
+
+            return format(x, 'MM/dd');
+          }}
+        />
+      </VictoryChart>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -56,7 +147,17 @@ const ChartRow = (props) => {
               <Typography variant="h6" gutterBottom component="div">
                 History
               </Typography>
-              <p>extra shit will go here</p>
+              {displayIntervals()}
+              {/* <VictoryLine
+      	        style={{
+      	          data: {
+      	            stroke: "#fff",
+      	            strokeWidth: 2,
+      	          },
+      	        }}
+      	        data={timeseries}
+      	      /> */}
+              {displayDropdownChart()}
             </Box>
           </Collapse>
         </TableCell>
