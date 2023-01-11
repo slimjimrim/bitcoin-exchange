@@ -14,10 +14,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import {
-  BASE_API_URL,
-  BITCOIN_PRICE_URL
-} from "../utils/constants";
+import { BASE_API_URL } from "../utils/constants";
 import { formatPrice } from "../utils/utils";
 import Accounts from "./Accounts";
 import Chart from "./Chart";
@@ -55,7 +52,11 @@ const Home = (props) => {
   }
 
   async function getBTCPrice() {
-    const resp = await axios.get(BITCOIN_PRICE_URL);
+    const resp = await axios.get(`${BASE_API_URL}/price`, {
+      params: {
+        asset: "bitcoin"
+      }
+    });
     setBtcPrice(resp.data.bitcoin);
   }
 

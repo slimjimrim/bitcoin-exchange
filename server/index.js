@@ -6,6 +6,7 @@ const path = require("path");
 const plaidRouter = require("./routers/plaid");
 const userRouter = require("./routers/user");
 const bitcoinRouter = require("./routers/bitcoin");
+const coingeckoRouter = require("./routers/coingecko");
 
 require("./db");
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(plaidRouter);
 app.use(userRouter);
 app.use(bitcoinRouter);
+app.use(coingeckoRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");

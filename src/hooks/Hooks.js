@@ -1,15 +1,20 @@
 import React from "react";
 import { useQuery } from "react-query";
+import axios from "axios";
 
-import {
-  COINGECKO_API_URL,
-} from "../utils/constants";
+import { BASE_API_URL } from "../utils/constants";
 
 // useQuery auto-caches, useState not necessary!
 function useGetTimeseries(asset, interval, options) {
   const { data, isLoading } = useQuery([`${asset}-timeseries`, interval], async () => {
-    const response = await fetch(`https://api.coingecko.com/api/v3/coins/${asset}/market_chart?vs_currency=usd&days=${interval}`);
-    return await response.json();
+      // we are using our express server as a proxy for the coingecko API due to CORS
+    const response = await axios.get(`${BASE_API_URL}/timeseries`, {
+      params: {
+        asset: asset,
+        interval: interval
+      }
+    });
+    return response.data;
   }, options);
   return {
     timeseries: data,
@@ -21,8 +26,12 @@ function useGetTimeseries(asset, interval, options) {
 function  useGetBasicInfo(assets, options) {
   return useQuery("main-chart-data", async () => {
     const promises = assets.map(async a => {
-      const resp = await fetch(`${COINGECKO_API_URL + a}`);
-      return resp.json();
+      const response = await axios.get(`${BASE_API_URL}/coin`, {
+        params: {
+          asset: a,
+        }
+      });
+      return response.data;
     });
     return await Promise.all(promises);
   }, options);

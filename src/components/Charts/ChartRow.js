@@ -40,7 +40,6 @@ const ChartRow = (props) => {
   const marketData = asset["market_data"];
   const [open, setOpen] = useState(false);
   const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
-  console.log(selectedInterval);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
 
   function displayIntervals() {

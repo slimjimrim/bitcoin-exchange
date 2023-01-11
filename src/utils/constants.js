@@ -1,7 +1,5 @@
 export const BASE_API_URL = "http://localhost:3030";
 
-export const BITCOIN_PRICE_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
-
 export const API_OPTIONS_A = {
   refetchInterval: 60000,
   staleTime: 60000
@@ -16,17 +14,15 @@ export const API_OPTIONS_B = {
   })),
 };
 
-export const COINGECKO_API_URL = "https://api.coingecko.com/api/v3/coins/";
-
 export const ASSETS = [
   "bitcoin",
   "ethereum",
-  "solana",
-  "tether",
-  "binancecoin",
-  "ripple",
-  "cardano",
-  "dogecoin"
+  // "solana",
+  // "tether",
+  // "binancecoin",
+  // "ripple",
+  // "cardano",
+  // "dogecoin"
 ];
 
 export const INTERVALS = [
