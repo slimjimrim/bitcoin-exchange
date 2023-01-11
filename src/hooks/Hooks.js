@@ -1,4 +1,7 @@
-import React from "react";
+import React, {
+    useState,
+    useEffect
+  } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 
@@ -6,6 +9,8 @@ import { BASE_API_URL } from "../utils/constants";
 
 // useQuery auto-caches, useState not necessary!
 function useGetTimeseries(asset, interval, options) {
+  const [ dataStore, setDataStore ] = useState();
+
   const { data, isLoading } = useQuery([`${asset}-timeseries`, interval], async () => {
       // we are using our express server as a proxy for the coingecko API due to CORS
     const response = await axios.get(`${BASE_API_URL}/timeseries`, {
@@ -16,10 +21,17 @@ function useGetTimeseries(asset, interval, options) {
     });
     return response.data;
   }, options);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setDataStore(data);
+    }
+  }, [data]);
+
   return {
-    timeseries: data,
+    timeseries: dataStore,
     isTimeseriesLoading: isLoading
-  };
+  }
 }
 
 // useQuery auto-caches, useState not necessary!
