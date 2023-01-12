@@ -1,6 +1,7 @@
 import React from "react";
 
 import ChartRow from "./ChartRow";
+import Toast from "../Toast/Toast";
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -20,27 +21,31 @@ const ChartTable = (props) => {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Rank</TableCell>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="right">Symbol</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">24hr %</TableCell>
-            <TableCell align="right">7d %</TableCell>
-            <TableCell align="right">30d %</TableCell>
-            <TableCell align="right">200d %</TableCell>
-            <TableCell align="center">1yr %</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {props.assets ? displayRows() : ""}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div>
+      <Toast position={"bottom-left"}/>
+
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>Rank</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="right">Symbol</TableCell>
+              <TableCell align="right">Price</TableCell>
+              <TableCell align="right">24hr %</TableCell>
+              <TableCell align="right">7d %</TableCell>
+              <TableCell align="right">30d %</TableCell>
+              <TableCell align="right">200d %</TableCell>
+              <TableCell align="center">1yr %</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {props.assets ? displayRows() : ""}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
 
