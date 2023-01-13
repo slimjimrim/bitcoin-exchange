@@ -1,5 +1,8 @@
 import React from "react";
 
+import Grid from '@mui/material/Grid';
+import CloseIcon from '@mui/icons-material/Close';
+
 import "./toast.scss";
 
 const Toast = (props) => {
@@ -9,15 +12,11 @@ const Toast = (props) => {
   return (
     <div className={`notification-container ${position}-${cssDirection}`}>
       <div className={`notification toast ${position}-${cssDirection}`}>
-        <button>
-            X
-        </button>
-        <div className="notification-image">
-            <img src="" alt="" />
+        <div>
+          <span>Close all rows</span>
         </div>
         <div>
-            <p className="notification-title">Title</p>
-            <p className="notification-message">Message</p>
+          <CloseIcon />
         </div>
       </div>
     </div>
