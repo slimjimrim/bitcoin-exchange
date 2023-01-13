@@ -38,23 +38,23 @@ const ChartRow = (props) => {
   const { asset, openRow, closeRow, forceClose } = props;
   const { image, name } = asset;
   const marketData = asset["market_data"];
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(undefined);
   const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
 
   useEffect(() => {
-    setOpen(false);
+    if (forceClose === true) {
+      setOpen(false);
+    }
   }, [forceClose]);
 
-  function expandRow() {
-    setOpen(!open);
-    console.log("open?: " + open);
-    if (open) {
-      closeRow();
-    } else {
+  useEffect(() => {
+    if (open === true) {
       openRow();
+    } else if (open === false) {
+      closeRow(forceClose);
     }
-  }
+  }, [open]);
 
   // display methods ===========================================================
   function displayIntervals() {
@@ -134,7 +134,7 @@ const ChartRow = (props) => {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => expandRow()}
+            onClick={() => setOpen(!open)}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>

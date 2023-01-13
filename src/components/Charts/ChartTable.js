@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ChartRow from "./ChartRow";
 import Toast from "../Toast/Toast";
@@ -12,35 +12,32 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const ChartTable = (props) => {
-  let [ openedRows, setOpenedRows ] = useState(0);
+  const [ openedRows, setOpenedRows ] = useState(0);
   const [ showCloseAll, setShowCloseAll ] = useState(false);
-  const [ forceClose, setForceClose ] = useState(false);
-
+  const [ forceClose, setForceClose ] = useState(undefined);
 
   function openRow() {
     const updated = openedRows + 1;
     setOpenedRows(updated);
     setForceClose(false);
-    toggleCloseAll(updated);
   }
 
-  function closeRow() {
-    const updated = openedRows - 1;
+  function closeRow(closeAll) {
+    const updated = closeAll ? 0 : openedRows - 1;
     setOpenedRows(updated);
-    toggleCloseAll(updated);
-  }
-
-  function toggleCloseAll(openedRows) {
-    if (openedRows > 0) {
-      setShowCloseAll(true);
-    } else {
-      setShowCloseAll(false);
-    }
   }
 
   function closeAll() {
     setForceClose(true);
   }
+
+  useEffect(() => {
+    if (openedRows > 0) {
+      setShowCloseAll(true);
+    } else {
+      setShowCloseAll(false);
+    }
+  }, [openedRows, forceClose]);
 
   // display methods ===========================================================
   function displayRows() {
