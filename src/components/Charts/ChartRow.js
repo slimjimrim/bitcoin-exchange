@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   formatPrice,
@@ -35,20 +35,25 @@ import {
 } from "../../utils/constants";
 
 const ChartRow = (props) => {
-  const { asset, openRow, closeRow } = props;
+  const { asset, openRow, closeRow, forceClose } = props;
   const { image, name } = asset;
   const marketData = asset["market_data"];
   const [open, setOpen] = useState(false);
   const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [forceClose]);
+
   function expandRow() {
+    setOpen(!open);
+    console.log("open?: " + open);
     if (open) {
       closeRow();
     } else {
       openRow();
     }
-    setOpen(!open);
   }
 
   // display methods ===========================================================

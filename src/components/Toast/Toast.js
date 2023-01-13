@@ -1,6 +1,6 @@
 import React from "react";
 
-import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
 import "./toast.scss";
@@ -10,7 +10,7 @@ const Toast = (props) => {
   const cssDirection = showCloseAll ? "in" : "out";
 
   return (
-    <div className={`notification-container ${position}-${cssDirection}`}>
+    <div onClick={() => props.closeAll()} className={`notification-container ${position}-${cssDirection}`}>
       <div className={`notification toast ${position}-${cssDirection}`}>
         <div>
           <span>Close all rows</span>

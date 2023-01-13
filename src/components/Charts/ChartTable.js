@@ -14,11 +14,13 @@ import Paper from '@mui/material/Paper';
 const ChartTable = (props) => {
   let [ openedRows, setOpenedRows ] = useState(0);
   const [ showCloseAll, setShowCloseAll ] = useState(false);
+  const [ forceClose, setForceClose ] = useState(false);
 
 
   function openRow() {
     const updated = openedRows + 1;
     setOpenedRows(updated);
+    setForceClose(false);
     toggleCloseAll(updated);
   }
 
@@ -36,16 +38,20 @@ const ChartTable = (props) => {
     }
   }
 
+  function closeAll() {
+    setForceClose(true);
+  }
+
   // display methods ===========================================================
   function displayRows() {
     return props.assets.map(asset => {
-      return (<ChartRow key={asset.id} asset={asset} openRow={openRow} closeRow={closeRow} />);
+      return (<ChartRow key={asset.id} asset={asset} openRow={openRow} closeRow={closeRow} forceClose={forceClose} />);
     });
   }
 
   return (
     <div>
-      <Toast position={"bottom-left"} showCloseAll={showCloseAll} />
+      <Toast position={"bottom-left"} showCloseAll={showCloseAll} closeAll={closeAll} />
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
