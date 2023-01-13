@@ -5,32 +5,60 @@
     color: red;
 }
 
-.top-right {
+.top-right-in {
     top: 12px;
     right: 12px;
     transition: transform .6s ease-in-out;
     animation: toast-in-right .7s;
 }
 
-.bottom-right {
+.bottom-right-in {
     bottom: 12px;
     right: 12px;
     transition: transform .6s ease-in-out;
     animation: toast-in-right .7s;
 }
 
-.top-left {
+.top-left-in {
     top: 12px;
     left: 12px;
-    transition: transform .6s ease-in;
+    transition: transform .6s ease-in-out;
     animation: toast-in-left .7s;
 }
 
-.bottom-left {
+.bottom-left-in {
     bottom: 12px;
     left: 12px;
-    transition: transform .6s ease-in;
+    transition: transform .6s ease-in-out;
     animation: toast-in-left .7s;
+}
+
+.top-right-out {
+    top: 0px;
+    right: -100px;
+    transition: transform .6s ease-in-out;
+    animation: toast-out-right .7s;
+}
+
+.bottom-right-out {
+    bottom: 12px;
+    right: -100px;
+    transition: transform .6s ease-in-out;
+    animation: toast-out-right .7s;
+}
+
+.top-left-out {
+    top: 0px;
+    left: -200px;
+    transition: transform .6s ease-in-out;
+    animation: toast-out-left .7s;
+}
+
+.bottom-left-out {
+    bottom: 12px;
+    left: -200px;
+    transition: transform .6s ease-in-out;
+    animation: toast-out-left .7s;
 }
 
 .notification {
@@ -114,6 +142,7 @@
 	border: 0
 }
 
+// enter ----------------------
 @keyframes toast-in-right {
 	from {
 	  transform: translateX(100%);
@@ -131,5 +160,26 @@
 	}
 	to {
 		transform: translateX(0);
+	}
+}
+
+// exit -----------------------
+@keyframes toast-out-right {
+	from {
+	  transform: translateX(0);
+
+	}
+	to {
+	  transform: translateX(100%);
+	}
+}
+
+@keyframes toast-out-left {
+	from {
+		transform: translateX(0);
+
+	}
+	to {
+		transform: translateX(-100%);
 	}
 }

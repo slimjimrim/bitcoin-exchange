@@ -3,11 +3,12 @@ import React from "react";
 import "./toast.scss";
 
 const Toast = (props) => {
-  const { show, position } = props;
+  const { showCloseAll, position } = props;
+  const cssDirection = showCloseAll ? "in" : "out";
 
   return (
-    <div className={`notification-container ${position}`}>
-      <div className={`notification toast ${position}`}>
+    <div className={`notification-container ${position}-${cssDirection}`}>
+      <div className={`notification toast ${position}-${cssDirection}`}>
         <button>
             X
         </button>

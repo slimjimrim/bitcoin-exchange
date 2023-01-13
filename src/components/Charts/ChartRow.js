@@ -35,13 +35,23 @@ import {
 } from "../../utils/constants";
 
 const ChartRow = (props) => {
-  const asset = props.asset;
-  let { image, name } = asset;
+  const { asset, openRow, closeRow } = props;
+  const { image, name } = asset;
   const marketData = asset["market_data"];
   const [open, setOpen] = useState(false);
   const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
 
+  function expandRow() {
+    if (open) {
+      closeRow();
+    } else {
+      openRow();
+    }
+    setOpen(!open);
+  }
+
+  // display methods ===========================================================
   function displayIntervals() {
     return (
       <div className="intervals">
@@ -119,7 +129,7 @@ const ChartRow = (props) => {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
+            onClick={() => expandRow()}
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>

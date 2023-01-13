@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ChartRow from "./ChartRow";
 import Toast from "../Toast/Toast";
@@ -12,17 +12,40 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const ChartTable = (props) => {
+  let [ openedRows, setOpenedRows ] = useState(0);
+  const [ showCloseAll, setShowCloseAll ] = useState(false);
+
+
+  function openRow() {
+    const updated = openedRows + 1;
+    setOpenedRows(updated);
+    toggleCloseAll(updated);
+  }
+
+  function closeRow() {
+    const updated = openedRows - 1;
+    setOpenedRows(updated);
+    toggleCloseAll(updated);
+  }
+
+  function toggleCloseAll(openedRows) {
+    if (openedRows > 0) {
+      setShowCloseAll(true);
+    } else {
+      setShowCloseAll(false);
+    }
+  }
 
   // display methods ===========================================================
   function displayRows() {
     return props.assets.map(asset => {
-      return (<ChartRow key={asset.id} asset={asset} />);
+      return (<ChartRow key={asset.id} asset={asset} openRow={openRow} closeRow={closeRow} />);
     });
   }
 
   return (
     <div>
-      <Toast position={"bottom-left"}/>
+      <Toast position={"bottom-left"} showCloseAll={showCloseAll} />
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
