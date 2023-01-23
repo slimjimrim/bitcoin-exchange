@@ -129,7 +129,7 @@ const ChartRow = (props) => {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }} className="main-row" onClick={() => setOpen(!open)}>
         <TableCell>
           <IconButton
             aria-label="expand row"

@@ -19,7 +19,7 @@ export const ASSETS = [
   "ethereum",
   // "solana",
   // "tether",
-  // "binancecoin",
+  "binancecoin",
   // "ripple",
   // "cardano",
   // "dogecoin"

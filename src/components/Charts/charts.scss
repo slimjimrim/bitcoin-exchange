@@ -8,6 +8,11 @@ img {
   margin-right: 10%;
 }
 
+tr.main-row:hover {
+    cursor: pointer !important;
+    background: #343a40;
+}
+
 .asset-symbol {
   text-transform: uppercase;
 }

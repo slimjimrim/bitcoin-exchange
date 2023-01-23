@@ -51,6 +51,7 @@ const Home = (props) => {
     }
   }
 
+  // TODO: move this to custom hook
   async function getBTCPrice() {
     const resp = await axios.get(`${BASE_API_URL}/price`, {
       params: {
