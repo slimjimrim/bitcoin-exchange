@@ -24,6 +24,7 @@ import Typography from '@mui/material/Typography';
 import {
   VictoryLine,
   VictoryChart,
+  VictoryArea,
   VictoryAxis,
   VictoryTooltip,
   VictoryVoronoiContainer,
@@ -34,6 +35,27 @@ import {
   INTERVALS
 } from "../../utils/constants";
 
+function findMinMaxY(timeseries) {
+  if (!timeseries) {
+    return { minY: 0, maxY: 0 }
+  }
+
+  const maxY = timeseries.reduce((max, i) => {
+    if (i.y > max) {
+      max = i.y;
+    }
+    return max;
+  }, 0);
+  const minY = timeseries.reduce((min, i) => {
+    if (i.y < min) {
+      min = i.y;
+    }
+    return min;
+  }, Number.POSITIVE_INFINITY);
+
+  return { minY, maxY }
+}
+
 const ChartRow = (props) => {
   const { asset, openRow, closeRow, forceClose } = props;
   const { image, name } = asset;
@@ -41,6 +63,8 @@ const ChartRow = (props) => {
   const [open, setOpen] = useState(undefined);
   const [selectedInterval, setSelectedInterval] = useState(INTERVALS[0].value);
   const {timeseries, isTimeseriesLoading} = useGetTimeseries(asset.id, selectedInterval, API_OPTIONS_B);
+  const {minY, maxY} = findMinMaxY(timeseries);
+
 
   useEffect(() => {
     if (forceClose === true) {
@@ -74,6 +98,8 @@ const ChartRow = (props) => {
       <VictoryChart
         width={800}
         height={400}
+        maxDomain={{ y: maxY }}
+        minDomain={{ y: minY }}
         containerComponent={
           <VictoryVoronoiContainer
             labels={({ datum }) => formatPrice(datum.y)}
@@ -95,15 +121,15 @@ const ChartRow = (props) => {
           />
         }
       >
-        <VictoryLine
+        <VictoryArea
           style={{
             data: {
+              fill: "#a0b0ff",
               stroke: "#fff",
               strokeWidth: 2,
-            },
+            }
           }}
-          data={timeseries}
-        />
+          data={timeseries}/>
         <VictoryAxis
           orientation="bottom"
           style={{
@@ -162,15 +188,6 @@ const ChartRow = (props) => {
                 History
               </Typography>
               {displayIntervals()}
-              {/* <VictoryLine
-      	        style={{
-      	          data: {
-      	            stroke: "#fff",
-      	            strokeWidth: 2,
-      	          },
-      	        }}
-      	        data={timeseries}
-      	      /> */}
               {displayDropdownChart()}
             </Box>
           </Collapse>
