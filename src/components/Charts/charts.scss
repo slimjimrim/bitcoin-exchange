@@ -8,9 +8,10 @@ img {
   margin-right: 10%;
 }
 
+th:not(:first-child):hover,
 tr.main-row:hover {
-    cursor: pointer !important;
-    background: #343a40;
+  cursor: pointer !important;
+  background: #343a40;
 }
 
 .asset-symbol {
