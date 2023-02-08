@@ -1,7 +1,9 @@
-# Simple BTC Exchange
+# Simple BTC Exchange and Price Charts
 
 This project utilizes:
 - React
+  - [victory charts](https://formidable.com/open-source/victory/docs/victory-chart/)
+  - [material-ui](https://mui.com/)
 - MongoDB
 - Node/Express
 - Plaid sandbox API
