@@ -1,5 +1,7 @@
 # Simple BTC Exchange and Price Charts
 
+<img width="896" alt="Screen Shot 2023-02-08 at 5 35 04 PM" src="https://user-images.githubusercontent.com/22163453/217666941-87c2b1a1-163c-4000-8480-00a173872d1c.png">
+
 This project utilizes:
 - React
   - [victory charts](https://formidable.com/open-source/victory/docs/victory-chart/)
