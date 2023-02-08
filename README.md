@@ -52,7 +52,6 @@ visit localhost:3006 in the browser
 ## NOTES
 
 ### Areas of improvement
-- All sensitive info like API keys should be environment variables
 - Various front-end features:
   - persist user session to prevent logging in on every browser refresh
   - better styling
