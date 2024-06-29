@@ -25,9 +25,6 @@ Start up MongoDB - default port is (`localhost:27017`)
   - follow [this](https://levelup.gitconnected.com/how-to-install-mongodb-database-on-local-environment-19a8a76f1b92) guide for setup help
 
 Start up Bitcoin Core in `-regtest` mode - default port is (`localhost:18443`)
-  - follow [this](https://gist.github.com/maxogden/1a172d659491f2b30fd4ffe67e94b964) for setup help
-  - NOTE: only perform steps 1, 2, and 3 to start bitcoin core in regtest mode.
-  - configure (or remove) username/password for your node in `server/constants.js`
 
 Run tests
 ```
