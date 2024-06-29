@@ -183,9 +183,9 @@ const Home = (props) => {
                       required: "An amount is required.",
                       min: 0.0001
                     })}
-                    className={`${errors.btc_amount ? "input-error" : ""}`}
+                    className={`${errors && errors.btc_amount ? "input-error" : ""}`}
                   />
-                  { errors.btc_amount && (
+                  {errors && errors.btc_amount && (
                     <p className="errorMsg">{ errors.btc_amount.message }</p>
                   )}
                 </Form.Group>

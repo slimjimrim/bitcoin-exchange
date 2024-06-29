@@ -63,9 +63,9 @@ const Login = (props) => {
                   message: "Email is not valid."
                 }
               })}
-              className={`${errors.email ? "input-error" : ""}`}
+              className={`${errors && errors.email ? "input-error" : ""}`}
             />
-            {errors.email && (
+            {errors && errors.email && (
               <p className="errorMsg">{errors.email.message}</p>
             )}
           </Form.Group>
@@ -82,9 +82,9 @@ const Login = (props) => {
                   message: "Password should have at-least 6 characters."
                 }
               })}
-              className={`${errors.password ? "input-error" : ""}`}
+              className={`${errors && errors.password ? "input-error" : ""}`}
             />
-            {errors.password && (
+            {errors && errors.password && (
               <p className="errorMsg">{errors.password.message}</p>
             )}
           </Form.Group>
