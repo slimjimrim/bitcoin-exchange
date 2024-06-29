@@ -53,10 +53,9 @@ const SecondStep = (props) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            name="email"
             placeholder="Enter your email address"
             autoComplete="off"
-            ref={register({
+            {...register("email", {
               required: "Email is required.",
               pattern: {
                 value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
@@ -74,10 +73,9 @@ const SecondStep = (props) => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            name="password"
             placeholder="Choose a password"
             autoComplete="off"
-            ref={register({
+            {...register("password", {
               required: "Password is required.",
               minLength: {
                 value: 6,

@@ -24,10 +24,9 @@ const FirstStep = (props) => {
           <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
-            name="first_name"
             placeholder="Enter your first name"
             autoComplete="off"
-            ref={register({
+            {...register("first_name", {
               required: "First name is required.",
               pattern: {
                 value: /^[a-zA-Z]+$/,
@@ -45,10 +44,9 @@ const FirstStep = (props) => {
           <Form.Label>Last Name</Form.Label>
           <Form.Control
             type="text"
-            name="last_name"
             placeholder="Enter your last name"
             autoComplete="off"
-            ref={register({
+            {...register("last_name", {
               required: "Last name is required.",
               pattern: {
                 value: /^[a-zA-Z]+$/,

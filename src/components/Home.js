@@ -175,12 +175,11 @@ const Home = (props) => {
                   <Form.Label>Amount</Form.Label>
                   <Form.Control
                     type="number"
-                    name="btc_amount"
                     step="0.0001"
                     value={ amount.value }
                     onChange={e => setAmount({ value: e.target.value })}
                     placeholder="Enter the amount of BTC"
-                    ref={register({
+                    {...register("btc_amount", {
                       required: "An amount is required.",
                       min: 0.0001
                     })}
@@ -195,8 +194,7 @@ const Home = (props) => {
                   <Form.Label>Funding</Form.Label>
                   <Form.Control
                     as="select"
-                    name="selected_account"
-                    ref={register({
+                    {...register("selected_account", {
                       required: "An account is required"
                     })}
                     onChange={e => {
